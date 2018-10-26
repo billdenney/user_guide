@@ -226,7 +226,7 @@ double ke = CL/VC;
 
 ### `$ODE` \ {#block-ode}
 
-Use `$ODE` to define model differential equations.  For all compartments assign 
+Use `$ODE` to define model differential equations.  For all compartments, assign 
 the value of the differential equation to `dxdt_CMT` where `CMT` is the name 
 of the compartment.  The `dxdt_` equation may be a function of model 
 parameters (via `$PARAM`), the current value of any compartment (`CMT`) 
@@ -274,7 +274,7 @@ Notes:
 
 * `$ODE` is written in `C++` syntax; every line must end in `;`
 * There may be only one `$ODE` block in a model
-
+* The `$ODE` block may not directly contain parameters defined in the `$OMEGA` block.  `$OMEGA` should be used in `$MAIN` to define a new parameter, and the parameter from `$MAIN` may be used in `$ODE`.
 
 ### `$TABLE` \ {#block-table}
 Use `$TABLE` to interact with parameters, compartment values, and other user-defined variables __after__ the system advances to the next time.  
@@ -473,7 +473,8 @@ EKA: 0.001 0.001 0.45 : ETA on absorption rate constant
 
 Notes:
 
-* Multiple `$OMEGA` blocks are allowed
+* Multiple `$OMEGA` blocks are allowed.
+* The `$ODE` block may not directly contain parameters defined in the `$OMEGA` block.  `$OMEGA` should be used in `$MAIN` to define a new parameter, and the parameter from `$MAIN` may be used in `$ODE`.
 
 
 ### `$SIGMA` \ {#block-sigma}
